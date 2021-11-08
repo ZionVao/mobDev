@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "lab1",
+    "slug": "lab1",
+    "version": "1.0.0",
+    "sdkVersion": "42.0.0",
+    "platforms": ["ios", "android", "web"]
+  }
+}

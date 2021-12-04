@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 const RootView = styled.View`
   height: 100%;
@@ -27,20 +27,20 @@ const CenterView = styled.View`
   width: 100%;
 `;
 
-const MediumButton = styled.TouchableOpacity`
+const Button = styled.TouchableOpacity`
   border-radius: 5px;
   background: lightcyan;
-  width: 32%;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 10px;
 `;
 
-const SmallButton = styled.TouchableOpacity`
+const MediumButton = styled.TouchableOpacity`
   border-radius: 5px;
   background: lightcyan;
-  width: 23%;
+  width: 49%;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -50,7 +50,7 @@ const SmallButton = styled.TouchableOpacity`
 const BigButton = styled.TouchableOpacity`
   border-radius: 5px;
   background: lightcyan;
-  width: 50%;
+  width: 100%;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -62,32 +62,26 @@ export function Root() {
     <RootView>
       <SpaceBetweenView>
         <MediumButton>
-          <Text>Button1</Text>
+          <Text>Left 50%</Text>
         </MediumButton>
         <MediumButton>
-          <Text>Button2</Text>
-        </MediumButton>
-        <MediumButton>
-          <Text>Button3</Text>
+          <Text>Right 50%</Text>
         </MediumButton>
       </SpaceBetweenView>
       <CenterView>
-        <MediumButton style={{ marginRight: '2%' }}>
-          <Text>Button3</Text>
-        </MediumButton>
-        <MediumButton>
-          <Text>Button4</Text>
-        </MediumButton>
+        <Button style={{ marginRight: '2%' }}>
+          <Text>Center_Left</Text>
+        </Button>
+        <Button>
+          <Text>Center</Text>
+        </Button>
+        <Button style={{ marginLeft: '2%' }}>
+          <Text>Center_Right</Text>
+        </Button>
       </CenterView>
       <SpaceBetweenView>
-        <SmallButton>
-          <Text>Button5</Text>
-        </SmallButton>
-        <SmallButton>
-          <Text>Button6</Text>
-        </SmallButton>
         <BigButton>
-          <Text>Button7</Text>
+          <Text>Bottom</Text>
         </BigButton>
       </SpaceBetweenView>
     </RootView>

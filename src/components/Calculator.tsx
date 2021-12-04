@@ -1,98 +1,48 @@
 import React, { useState } from 'react';
 import { evaluate } from 'mathjs';
-import { CustomView } from './view/CustomView';
-import { ButtonsList } from './button/ButtonList';
-import { IButtonItem } from '../interfaces/IButtonItem';
-import { CustomTextInput } from './input/TextInput';
-import { WrapperView } from './view/Wrapper';
+import { WrapperView } from './view/WrapperView';
+import { NumberInput } from './input/NumberInput';
+import { CenterSpaceEvenlyView } from './view/CenterSpaceEvenlyView';
+import { PrimaryWhiteText } from './text/PrimaryWhiteText';
+import { Select } from './input/Select';
+import { DefaultTextInput } from './input/DefaultTextInput';
+import { DefaultButton } from './button/DefaultButton';
+import { PrimaryBlackText } from './text/PrimaryBlackText';
+import { RootView } from './view/RootView';
 
 export function Calculator() {
-  const [expression, setExpression] = useState<string>('');
+  const [firstNumber, setFirstNumber] = useState('');
+  const [secondNumber, setSecondNumber] = useState('');
+  const [operationSign, setOperationSign] = useState('+');
+  const [result, setResult] = useState('');
 
-  const numberHandler = (value: string) => {
-    setExpression(`${expression}${value}`);
+  const operations = ['+', '-', '*', '/'];
+
+  const calculate = () => {
+    if (firstNumber && secondNumber) {
+      setResult(
+        evaluate(`${firstNumber} ${operationSign} ${secondNumber}`).toString(),
+      );
+    }
   };
 
-  const signHandler = (value: string) => {
-    setExpression(`${expression} ${value} `);
-  };
-
-  const buttons: IButtonItem[] = [
-    {
-      text: '1',
-      handler: numberHandler,
-    },
-    {
-      text: '2',
-      handler: numberHandler,
-    },
-    {
-      text: '3',
-      handler: numberHandler,
-    },
-    {
-      text: '+',
-      handler: signHandler,
-    },
-    {
-      text: '4',
-      handler: numberHandler,
-    },
-    {
-      text: '5',
-      handler: numberHandler,
-    },
-    {
-      text: '6',
-      handler: numberHandler,
-    },
-    {
-      text: '-',
-      handler: signHandler,
-    },
-    {
-      text: '7',
-      handler: numberHandler,
-    },
-    {
-      text: '8',
-      handler: numberHandler,
-    },
-    {
-      text: '9',
-      handler: numberHandler,
-    },
-    {
-      text: '*',
-      handler: signHandler,
-    },
-    {
-      text: 'C',
-      handler: () => {
-        setExpression('');
-      },
-    },
-    {
-      text: '0',
-      handler: numberHandler,
-    },
-    {
-      text: '=',
-      handler: () => {
-        setExpression(evaluate(expression).toString());
-      },
-    },
-    {
-      text: '/',
-      handler: signHandler,
-    },
-  ];
   return (
-    <CustomView>
+    <RootView>
       <WrapperView>
-        <CustomTextInput value={expression} editable={false} />
-        <ButtonsList buttons={buttons} />
+        <NumberInput onChange={setFirstNumber} value={firstNumber} />
+        <NumberInput onChange={setSecondNumber} value={secondNumber} />
+        <CenterSpaceEvenlyView>
+          <PrimaryWhiteText>Операція</PrimaryWhiteText>
+          <Select handleChange={setOperationSign} values={operations} />
+        </CenterSpaceEvenlyView>
+        <CenterSpaceEvenlyView>
+          <PrimaryWhiteText>Результат</PrimaryWhiteText>
+          <DefaultTextInput editable={false} value={result} />
+        </CenterSpaceEvenlyView>
+        <DefaultButton onPress={calculate}>
+          <PrimaryBlackText>Обрахувати</PrimaryBlackText>
+        </DefaultButton>
       </WrapperView>
-    </CustomView>
+    </RootView>
   );
 }

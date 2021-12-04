@@ -3,9 +3,9 @@ import { FlatList } from 'react-native';
 import { ButtonItem } from './Button';
 import { IButtonItem } from '../../interfaces/IButtonItem';
 
-export function ButtonsFlatList({ buttons }: { buttons: IButtonItem[] }) {
+export function ButtonsList({ buttons }: { buttons: IButtonItem[] }) {
   const renderItem = ({ item }: { item: IButtonItem }) => (
-    <ButtonItem label={item.text} />
+    <ButtonItem text={item.text} handler={item.handler} />
   );
 
   return (

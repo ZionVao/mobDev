@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { IButtonItem } from '../../interfaces/IButtonItem';
 
 const ButtonView = styled.View`
   background: darkslategrey;
@@ -19,10 +20,15 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-export function ButtonItem({ label }: { label: string }) {
+export function ButtonItem({ text, handler }: IButtonItem) {
   return (
-    <ButtonView>
-      <ButtonText>{label}</ButtonText>
+    <ButtonView
+      onTouchStart={(event) => {
+        event.preventDefault();
+        handler(text);
+      }}
+    >
+      <ButtonText>{text}</ButtonText>
     </ButtonView>
   );
 }

@@ -1,35 +1,117 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { evaluate } from 'mathjs';
 import { CustomView } from './view/CustomView';
-import { ButtonsFlatList } from './button/ButtonList';
+import { ButtonsList } from './button/ButtonList';
 import { IButtonItem } from '../interfaces/IButtonItem';
 import { CustomTextInput } from './input/TextInput';
 import { WrapperView } from './view/Wrapper';
 
-const buttons: IButtonItem[] = [
-  { text: '1' },
-  { text: '2' },
-  { text: '3' },
-  { text: '+' },
-  { text: '4' },
-  { text: '5' },
-  { text: '6' },
-  { text: '-' },
-  { text: '7' },
-  { text: '8' },
-  { text: '9' },
-  { text: '*' },
-  { text: 'C' },
-  { text: '0' },
-  { text: '=' },
-  { text: '/' },
-];
-
 export function Calculator() {
+  const [expression, setExpression] = useState<string>('');
+
+  const buttons: IButtonItem[] = [
+    {
+      text: '1',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '2',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '3',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '+',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '4',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '5',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '6',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '-',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '7',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '8',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '9',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '*',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: 'C',
+      handler: () => {
+        setExpression('');
+      },
+    },
+    {
+      text: '0',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+    {
+      text: '=',
+      handler: () => {
+        setExpression(evaluate(expression).toString());
+      },
+    },
+    {
+      text: '/',
+      handler: (value) => {
+        setExpression(`${expression}${value}`);
+      },
+    },
+  ];
   return (
     <CustomView>
       <WrapperView>
-        <CustomTextInput />
-        <ButtonsFlatList buttons={buttons} />
+        <CustomTextInput value={expression} editable={false} />
+        <ButtonsList buttons={buttons} />
       </WrapperView>
     </CustomView>
   );

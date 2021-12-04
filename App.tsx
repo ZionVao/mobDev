@@ -1,6 +1,6 @@
 import React from 'react';
-import { Calculator } from './src/components/Calculator';
+import { Root } from './src/Root';
 
 export default function App() {
-  return <Calculator />;
+  return <Root />;
 }

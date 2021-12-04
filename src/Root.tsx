@@ -1,89 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { Text } from 'react-native';
 
 const RootView = styled.View`
   height: 100%;
   width: 100%;
-  background: darkcyan;
+  background: #ffffff;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 7%;
-`;
-
-const SpaceBetweenView = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  padding: 2%;
-`;
-
-const CenterView = styled.View`
-  display: flex;
-  flex-direction: row;
   justify-content: center;
-  width: 100%;
+  align-items: center;
 `;
 
 const Button = styled.TouchableOpacity`
-  border-radius: 5px;
-  background: lightcyan;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 10px;
-`;
-
-const MediumButton = styled.TouchableOpacity`
-  border-radius: 5px;
-  background: lightcyan;
-  width: 49%;
-  height: 40px;
+  border-radius: 24px;
+  border-color: #505050;
+  border-width: 7px;
+  border-style: solid;
+  height: 20%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const BigButton = styled.TouchableOpacity`
-  border-radius: 5px;
-  background: lightcyan;
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const StyledText = styled(Text)`
+  font-size: 20px;
 `;
 
 export function Root() {
+  const [status, setStatus] = useState<boolean>(false);
+
   return (
     <RootView>
-      <SpaceBetweenView>
-        <MediumButton>
-          <Text>Left 50%</Text>
-        </MediumButton>
-        <MediumButton>
-          <Text>Right 50%</Text>
-        </MediumButton>
-      </SpaceBetweenView>
-      <CenterView>
-        <Button style={{ marginRight: '2%' }}>
-          <Text>Center_Left</Text>
-        </Button>
-        <Button>
-          <Text>Center</Text>
-        </Button>
-        <Button style={{ marginLeft: '2%' }}>
-          <Text>Center_Right</Text>
-        </Button>
-      </CenterView>
-      <SpaceBetweenView>
-        <BigButton>
-          <Text>Bottom</Text>
-        </BigButton>
-      </SpaceBetweenView>
+      <Button
+        style={status && { backgroundColor: 'lightgreen' }}
+        onPress={() => setStatus(!status)}
+      >
+        <StyledText>New Button</StyledText>
+      </Button>
     </RootView>
   );
 }
